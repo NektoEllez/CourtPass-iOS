@@ -19,7 +19,7 @@ struct AuthView: View {
     
     @ViewBuilder
     private var backgroundView: some View {
-        DesignTokens.Background.primary.ignoresSafeArea()
+        Color(.systemBackground).ignoresSafeArea()
     }
     
     @ViewBuilder
@@ -30,12 +30,8 @@ struct AuthView: View {
                 .scaledToFill()
                 .frame(width: DesignTokens.Size.promoImageSize, height: DesignTokens.Size.promoImageSize)
                 .offset(y: DesignTokens.Spacing.xxxl * 2)
-                .overlay {
-                    
-                }
         }
     }
-    
     
     @ViewBuilder
     private var mainContent: some View {
@@ -45,7 +41,7 @@ struct AuthView: View {
                 .padding(.bottom, DesignTokens.Spacing.xl)
             welcomeSection.padding(.leading, DesignTokens.Spacing.lg)
             Spacer()
-            flowerImage.padding(.bottom, DesignTokens.Spacing.xxxl + DesignTokens.Spacing.xs)
+            flowerImage.padding(.bottom, DesignTokens.Spacing.xxxl + DesignTokens.Spacing.sm)
             authButtons
                 .padding(.horizontal, DesignTokens.Spacing.lg)
             termsAndPrivacy
@@ -70,7 +66,7 @@ struct AuthView: View {
         VStack(alignment: .leading, spacing: 20) {
             Text("WELCOME")
                 .font(DesignTokens.Typography.display)
-                .foregroundColor(.black)
+                .foregroundColor(DesignTokens.Text.primary)
             
             Text("Enter your phone number. We will send you an SMS\nwith a confirmation code to this number.")
                 .font(DesignTokens.Typography.caption)
@@ -108,15 +104,15 @@ struct AuthView: View {
             HStack(spacing: 12) {
                 Image(systemName: "applelogo")
                     .font(.system(size: DesignTokens.IconSize.social, weight: .medium))
-                    .foregroundColor(DesignTokens.Text.onLight)
+                    .foregroundColor(.black)
                 
                 Text("Continue with Apple")
                     .font(DesignTokens.Typography.bodySemibold)
-                    .foregroundColor(DesignTokens.Text.onLight)
+                    .foregroundColor(.black)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, DesignTokens.Spacing.lg + DesignTokens.Spacing.xs)
-            .background(DesignTokens.Text.onDark)
+            .background(.white)
             .cornerRadius(DesignTokens.CornerRadius.button)
         }
         .disabled(isLoading)
@@ -132,18 +128,18 @@ struct AuthView: View {
             HStack(spacing: 12) {
                 Image("google")
                     .font(.system(size: DesignTokens.IconSize.social, weight: .medium))
-                    .foregroundColor(DesignTokens.Text.onLight)
+                    .foregroundColor(.black)
                 
                 Text("Continue with Google")
                     .font(DesignTokens.Typography.bodySemibold)
-                    .foregroundColor(DesignTokens.Text.onLight)
+                    .foregroundColor(.black)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, DesignTokens.Spacing.lg + DesignTokens.Spacing.xs)
-            .background(DesignTokens.Text.onDark)
+            .background(.white)
             .overlay(
                 RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.button)
-                    .stroke(DesignTokens.Text.disabled.opacity(DesignTokens.Opacity.borderSubtle), lineWidth: 1)
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
             )
             .cornerRadius(DesignTokens.CornerRadius.button)
         }
@@ -190,7 +186,7 @@ struct AuthView: View {
                 .ignoresSafeArea()
             
             ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: DesignTokens.Text.onDark))
+                .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 .scaleEffect(DesignTokens.Scale.loading)
         }
     }
