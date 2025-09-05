@@ -30,6 +30,8 @@ struct AuthView: View {
                 .scaledToFill()
                 .frame(width: DesignTokens.Size.promoImageSize, height: DesignTokens.Size.promoImageSize)
                 .offset(y: DesignTokens.Spacing.xxxl * 2)
+                .foregroundColor(Color(light: .white, dark: .gray))
+                .opacity(0.15)
         }
     }
     
