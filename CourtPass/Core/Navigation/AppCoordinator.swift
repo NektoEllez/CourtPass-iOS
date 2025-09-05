@@ -14,7 +14,6 @@ final class AppCoordinator: ObservableObject {
     
     init(container: DIContainer) {
         self.container = container
-        // Проверяем сохраненный токен для автоматического входа
         checkAuthenticationState()
     }
     
@@ -31,8 +30,7 @@ final class AppCoordinator: ObservableObject {
     }
     
     private func checkAuthenticationState() {
-        // TODO: Проверить наличие валидного токена в Keychain
-        // Пока всегда показываем auth экран
+        // TODO: Check for valid token in Keychain
         currentRoute = .auth
     }
 }

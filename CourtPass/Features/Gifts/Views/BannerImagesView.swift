@@ -23,7 +23,7 @@ struct BannerImagesView: View {
                                     RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16)
                                 )
                             
-                            Text("Пустая карта")
+                            Text("Empty Card")
                                 .font(DesignTokens.Typography.headline)
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
@@ -49,7 +49,7 @@ struct BannerImagesView: View {
                                     RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16)
                                 )
                             
-                            Text("Пустая карта")
+                            Text("Empty Card")
                                 .font(DesignTokens.Typography.headline)
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
