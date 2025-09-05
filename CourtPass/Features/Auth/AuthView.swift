@@ -1,11 +1,8 @@
 import SwiftUI
-
-
 struct AuthView: View {
     @State private var isLoading = false
     @Environment(\.colorScheme) private var colorScheme
     let onSignInSuccess: () -> Void
-    
     var body: some View {
         backgroundView
             .overlay {
@@ -16,13 +13,10 @@ struct AuthView: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
     }
-    
-    
     @ViewBuilder
     private var backgroundView: some View {
         Color(.systemBackground).ignoresSafeArea()
     }
-    
     @ViewBuilder
     private var vectorBackground: some View {
         VStack {
@@ -34,7 +28,6 @@ struct AuthView: View {
                 .opacity(colorScheme == .dark ? 0.15 : 1.0)
         }
     }
-    
     @ViewBuilder
     private var mainContent: some View {
         VStack(spacing: 0) {
@@ -49,7 +42,6 @@ struct AuthView: View {
             termsAndPrivacy
         }
     }
-    
     @ViewBuilder
     private var skipButton: some View {
         HStack {
@@ -62,14 +54,12 @@ struct AuthView: View {
             .padding(.trailing, DesignTokens.Spacing.xl)
         }
     }
-    
     @ViewBuilder
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("WELCOME")
                 .font(DesignTokens.Typography.display)
                 .foregroundColor(DesignTokens.Text.primary)
-            
             Text("Enter your phone number. We will send you an SMS\nwith a confirmation code to this number.")
                 .font(DesignTokens.Typography.caption)
                 .foregroundColor(DesignTokens.Text.secondary)
@@ -78,7 +68,6 @@ struct AuthView: View {
         .padding(.horizontal, DesignTokens.Spacing.xxl)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
-    
     @ViewBuilder
     private var flowerImage: some View {
         Image("main_flower")
@@ -86,7 +75,6 @@ struct AuthView: View {
             .scaledToFill()
             .frame(width: DesignTokens.Size.flowerImageWidth, height: DesignTokens.Size.flowerImageHeight)
     }
-    
     @ViewBuilder
     private var authButtons: some View {
         VStack(spacing: DesignTokens.Spacing.sm) {
@@ -95,7 +83,6 @@ struct AuthView: View {
         }
         .padding(.horizontal, DesignTokens.Spacing.xxl)
     }
-    
     @ViewBuilder
     private var appleSignInButton: some View {
         socialSignInButton(
@@ -104,7 +91,6 @@ struct AuthView: View {
             provider: .apple
         )
     }
-    
     @ViewBuilder
     private var googleSignInButton: some View {
         socialSignInButton(
@@ -113,10 +99,10 @@ struct AuthView: View {
             provider: .google
         )
     }
-    
     @ViewBuilder
     private func socialSignInButton<Icon: View>(icon: Icon, title: String, provider: SignInActor.Provider) -> some View {
         Button {
+            HapticManager.shared.buttonTap()
             Task {
                 await handleSignIn(provider: provider)
             }
@@ -125,7 +111,6 @@ struct AuthView: View {
                 icon
                     .font(.system(size: DesignTokens.IconSize.social, weight: .medium))
                     .foregroundColor(.black)
-                
                 Text(title)
                     .font(DesignTokens.Typography.bodySemibold)
                     .foregroundColor(.black)
@@ -141,7 +126,6 @@ struct AuthView: View {
         }
         .disabled(isLoading)
     }
-    
     @ViewBuilder
     private var termsAndPrivacy: some View {
         VStack(spacing: 4) {
@@ -149,21 +133,16 @@ struct AuthView: View {
                 .font(DesignTokens.Typography.caption)
                 .foregroundColor(DesignTokens.Text.secondary)
                 .multilineTextAlignment(.center)
-            
             HStack(spacing: DesignTokens.Spacing.xs) {
                 Button("Terms of Use") {
-                    // Handle terms tap
                 }
                 .font(DesignTokens.Typography.caption)
                 .foregroundColor(DesignTokens.Text.link)
                 .underline()
-                
                 Text("and")
                     .font(DesignTokens.Typography.caption)
                     .foregroundColor(DesignTokens.Text.secondary)
-                
                 Button("Privacy Policy") {
-                    // Handle privacy tap
                 }
                 .font(DesignTokens.Typography.caption)
                 .foregroundColor(DesignTokens.Text.link)
@@ -174,38 +153,27 @@ struct AuthView: View {
         .padding(.top, DesignTokens.Spacing.xxl)
         .padding(.bottom, DesignTokens.Spacing.xxxl + DesignTokens.Spacing.lg)
     }
-    
     @ViewBuilder
     private var loadingOverlay: some View {
         if isLoading {
             Color.black.opacity(DesignTokens.Opacity.loadingOverlay)
                 .ignoresSafeArea()
-            
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 .scaleEffect(DesignTokens.Scale.loading)
         }
     }
-    
-    
     private func handleSignIn(provider: SignInActor.Provider) async {
         isLoading = true
-        
         await SignInActor.shared.signIn(provider: provider)
-        
         await NavigationActor.shared.goToGifts()
-        
         onSignInSuccess()
-        
         isLoading = false
     }
 }
-
-
 #Preview("Auth View") {
     AuthView(onSignInSuccess: {})
 }
-
 #Preview("Auth View - Dark") {
     AuthView(onSignInSuccess: {})
         .preferredColorScheme(.dark)

@@ -1,15 +1,12 @@
 import SwiftUI
-
 struct GiftCardView: View {
     let gift: GiftItem?
     @Binding var favorites: Set<UUID>
-    
     let title: String
     let priceText: String
     let imageName: String
     let isFavorite: Bool
     let onFavorite: () -> Void
-    
     init(gift: GiftItem? = nil, favorites: Binding<Set<UUID>> = .constant(Set<UUID>()), title: String = "", priceText: String = "", imageName: String = "", isFavorite: Bool = false, onFavorite: @escaping () -> Void = {}) {
         self.gift = gift
         _favorites = favorites
@@ -19,7 +16,6 @@ struct GiftCardView: View {
         self.isFavorite = isFavorite
         self.onFavorite = onFavorite
     }
-    
     var body: some View {
         Button {
             HapticManager.shared.buttonTap()
@@ -46,12 +42,10 @@ struct GiftCardView: View {
                                             .fill(Color.blue)
                                             .frame(width: DesignTokens.IconSize.sm, height: DesignTokens.IconSize.sm)
                                     }
-                                    
                                     Rectangle()
                                         .fill(Color.orange)
                                         .frame(width: 30, height: 8)
                                         .cornerRadius(DesignTokens.CornerRadius.xs)
-                                    
                                     HStack(spacing: 2) {
                                         Circle()
                                             .fill(Color.green)
@@ -67,9 +61,8 @@ struct GiftCardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16))
                 .overlay(
                     Button {
-                        let currentlyFavorite = gift != nil ? favorites.contains(gift!.id) : isFavorite
+                        let currentlyFavorite = gift.map { favorites.contains($0.id) } ?? isFavorite
                         HapticManager.shared.favoriteToggle(isFavorite: !currentlyFavorite)
-                        
                         withAnimation(DesignTokens.Animation.scale) {
                             onFavorite()
                         }
@@ -78,22 +71,20 @@ struct GiftCardView: View {
                             .fill(.ultraThinMaterial)
                             .frame(width: 30, height: 30)
                             .overlay(
-                                Image(systemName: (gift != nil ? favorites.contains(gift!.id) : isFavorite) ? DesignTokens.Icons.heartFill : DesignTokens.Icons.heart)
+                                Image(systemName: (gift.map { favorites.contains($0.id) } ?? isFavorite) ? DesignTokens.Icons.heartFill : DesignTokens.Icons.heart)
                                     .font(.system(size: 16))
-                                    .foregroundColor((gift != nil ? favorites.contains(gift!.id) : isFavorite) ? .red : DesignTokens.Text.primary)
+                                    .foregroundColor((gift.map { favorites.contains($0.id) } ?? isFavorite) ? .red : DesignTokens.Text.primary)
                             )
                     }
                     .padding(DesignTokens.Spacing.sm),
                     alignment: .topTrailing
                 )
-                
                 VStack(alignment: .leading, spacing: 4) {
                     Text(gift?.title ?? title)
                         .font(DesignTokens.Typography.subheadline)
                         .foregroundColor(DesignTokens.Text.primary)
                         .lineLimit(DesignTokens.LineLimit.twoLines)
                         .multilineTextAlignment(.leading)
-                    
                     Text(gift?.price ?? priceText)
                         .font(DesignTokens.Typography.headline)
                         .foregroundColor(DesignTokens.Text.primary)
@@ -107,7 +98,6 @@ struct GiftCardView: View {
         .cornerRadius(DesignTokens.CornerRadius.r16)
     }
 }
-
 #Preview("Gift Card View") {
     GiftCardView(
         gift: GiftItem.mockData[0],

@@ -1,14 +1,11 @@
 import SwiftUI
-
 struct TabBarItem {
     let title: String
     let icon: String
     let tag: Int
 }
-
 struct MainTabView: View {
     @State private var selectedTab = 0
-    
     let tabItems: [TabBarItem] = [
         TabBarItem(title: "Gifts", icon: DesignTokens.Icons.tabGift, tag: 0),
         TabBarItem(title: "Gifts", icon: DesignTokens.Icons.tabGift1, tag: 1),
@@ -16,14 +13,12 @@ struct MainTabView: View {
         TabBarItem(title: "Cart", icon: DesignTokens.Icons.tabCart, tag: 3),
         TabBarItem(title: "Profile", icon: DesignTokens.Icons.tabProfile, tag: 4)
     ]
-
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 GiftsView()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
             HStack(spacing: 0) {
                 ForEach(tabItems, id: \.tag) { item in
                     Button {
@@ -40,7 +35,6 @@ struct MainTabView: View {
                                 .frame(height: DesignTokens.IconSize.tab)
                                 .foregroundColor(selectedTab == item.tag ? DesignTokens.TabBar.selected : DesignTokens.TabBar.unselected)
                                 .scaleEffect(selectedTab == item.tag ? DesignTokens.Scale.selectedTab : DesignTokens.Scale.none)
-                            
                             Text(item.title)
                                 .font(DesignTokens.Typography.caption)
                                 .foregroundColor(selectedTab == item.tag ? DesignTokens.TabBar.selected : DesignTokens.TabBar.unselected)
@@ -61,14 +55,10 @@ struct MainTabView: View {
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
-
 }
-
-
 #Preview("Main Tab View") {
     MainTabView()
 }
-
 #Preview("Main Tab View - Dark") {
     MainTabView().preferredColorScheme(.dark)
 }

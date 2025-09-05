@@ -1,8 +1,6 @@
 import SwiftUI
-
 struct BannerImagesView: View {
     @Binding var currentBannerIndex: Int?
-    
     var body: some View {
         GeometryReader { geometry in
             if #available(iOS 17.0, *) {
@@ -22,7 +20,6 @@ struct BannerImagesView: View {
                                 .clipShape(
                                     RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16)
                                 )
-                            
                             Text("Empty Card")
                                 .font(DesignTokens.Typography.headline)
                                 .foregroundColor(.white)
@@ -40,7 +37,6 @@ struct BannerImagesView: View {
                     HStack(spacing: 5) {
                         BannerCardView()
                             .frame(width: geometry.size.width - DesignTokens.Spacing.screenPadding * 2)
-                        
                         ZStack {
                             Rectangle()
                                 .fill(DesignTokens.Text.disabled)
@@ -48,7 +44,6 @@ struct BannerImagesView: View {
                                 .clipShape(
                                     RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16)
                                 )
-                            
                             Text("Empty Card")
                                 .font(DesignTokens.Typography.headline)
                                 .foregroundColor(.white)
@@ -69,9 +64,6 @@ struct BannerImagesView: View {
         .frame(height: DesignTokens.Size.bannerHeight)
     }
 }
-
-
-
 #Preview("Banner Images View") {
     BannerImagesView(currentBannerIndex: .constant(0))
         .padding()

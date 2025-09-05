@@ -1,6 +1,4 @@
 import SwiftUI
-
-
 struct CategoriesSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: DesignTokens.Spacing.block) {
@@ -8,9 +6,7 @@ struct CategoriesSectionView: View {
                 Text("New Popular Arrivals")
                     .font(DesignTokens.Typography.title)
                     .foregroundColor(DesignTokens.Text.primary)
-                
                 Spacer()
-                
                 Button("Show all") {
                     Task {
                         await UIEventActor.shared.presentToast("Show all tapped")
@@ -19,7 +15,6 @@ struct CategoriesSectionView: View {
                 .font(DesignTokens.Typography.body)
                 .foregroundColor(DesignTokens.Text.primary)
             }
-            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: DesignTokens.Spacing.block) {
                     CategoryCardView(
@@ -27,13 +22,11 @@ struct CategoriesSectionView: View {
                         icon: "gift.fill",
                         color: .yellow
                     )
-                    
                     CategoryCardView(
                         title: "Mixed Flowers",
                         icon: "heart.fill",
                         color: .red
                     )
-                    
                     CategoryCardView(
                         title: "Thank you",
                         icon: "hand.thumbsup.fill",
@@ -48,8 +41,6 @@ struct CategoriesSectionView: View {
         .padding(.top, DesignTokens.Spacing.block)
     }
 }
-
-
 #Preview("Categories Section View") {
     CategoriesSectionView()
         .padding()

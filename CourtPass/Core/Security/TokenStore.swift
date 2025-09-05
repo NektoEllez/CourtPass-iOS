@@ -1,5 +1,4 @@
 import Foundation
-
 protocol TokenStore: Sendable {
     var accessToken: String? { get async }
     var user: User? { get async }
@@ -7,4 +6,3 @@ protocol TokenStore: Sendable {
     func setUser(_ value: User?) async
     func clear() async
 }
-

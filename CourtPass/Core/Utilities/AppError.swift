@@ -1,5 +1,4 @@
 import Foundation
-
 enum AppError: Error, LocalizedError {
     case httpStatus(Int)
     case rpc(code: Int, message: String)
@@ -7,8 +6,8 @@ enum AppError: Error, LocalizedError {
     case firebaseTokenMissing
     case cancelled
     case decodingFailed
+    case invalidURL
     case unknown
-
     var errorDescription: String? {
         switch self {
         case .httpStatus(let code): 
@@ -23,12 +22,13 @@ enum AppError: Error, LocalizedError {
             return "Cancelled"
         case .decodingFailed: 
             return "Decoding failed"
+        case .invalidURL: 
+            return "Invalid URL configuration"
         case .unknown: 
             return "Unknown error"
         }
     }
 }
-
 enum HTTPErrorMapper {
     static func map(_ response: URLResponse?) -> AppError? {
         guard let http = response as? HTTPURLResponse else { return .unknown }
@@ -36,4 +36,3 @@ enum HTTPErrorMapper {
         return nil
     }
 }
-
