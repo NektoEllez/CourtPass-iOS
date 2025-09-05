@@ -35,28 +35,25 @@ struct ContentView: View {
     @StateObject private var coordinator = AppCoordinator(container: DIContainer.bootstrap())
     
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
-            Group {
-                switch coordinator.startRoute {
-                case .auth:
-                    AuthView(onSignInSuccess: {
-                        coordinator.setAuthenticated()
-                    })
-                case .home:
-                    MainTabView()
-                }
-            }
-            .navigationDestination(for: AppRoute.self) { route in
-                switch route {
-                case .auth:
-                    AuthView(onSignInSuccess: {
-                        coordinator.setAuthenticated()
-                    })
-                case .home:
-                    MainTabView()
-                }
+        Group {
+            switch coordinator.currentRoute {
+            case .auth:
+                AuthView(onSignInSuccess: {
+                    coordinator.setAuthenticated()
+                })
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
+            case .home:
+                MainTabView()
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing), 
+                    removal: .move(edge: .leading)
+                ))
             }
         }
+        .animation(.easeInOut(duration: 0.3), value: coordinator.currentRoute)
     }
 }
 

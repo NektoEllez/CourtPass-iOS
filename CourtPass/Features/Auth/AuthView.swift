@@ -6,15 +6,14 @@ struct AuthView: View {
     let onSignInSuccess: () -> Void
     
     var body: some View {
-        NavigationStack {
-            backgroundView
-                .overlay {
-                    vectorBackground
-                    mainContent
-                    loadingOverlay
-                }
-        }
-        .navigationBarHidden(true)
+        backgroundView
+            .overlay {
+                vectorBackground
+                mainContent
+                loadingOverlay
+            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
     
     
