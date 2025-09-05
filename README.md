@@ -373,7 +373,7 @@ xcodebuild test -project CourtPass.xcodeproj -scheme CourtPass -destination 'pla
 - ⚡ Высокая производительность и UX
 - 🔧 Масштабируемая архитектура
 
-**Время разработки:** ~3 часа (согласно требованиям)  
+**Время разработки:** ~3.5 часа 
 **Готовность к продакшену:** 85% (требуются настройки Firebase/Google Cloud)
 
 ## 📝 Лицензия
@@ -382,6 +382,6 @@ xcodebuild test -project CourtPass.xcodeproj -scheme CourtPass -destination 'pla
 
 ## 👨‍💻 Контакты
 
-- **GitHub:** [CourtAI Test Task](https://github.com/)
-- **Email:** team@court360.ai  
-- **Figma Design:** [Ссылка на дизайн](https://www.figma.com/design/Wigce3gVXWgZEvmyz3ZnLv/Test?node-id=0-1&t=e8uTMc7Q7bOMDKjg-1)
+- **GitHub:** [CourtPass iOS App](https://github.com/NektoEllez/CourtPass-iOS)
+- **Email:** work.marin.ivan@gmail.com
+- **Figma Design:** [Ссылка на дизайн](https://www.figma.com/design/Wigce3gVXWgZEvmyz3ZnLv/Test?node-id=1-1983&t=SNyWDWxWsYDTdHE2-0)
