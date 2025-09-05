@@ -1,6 +1,78 @@
-# CourtPass - iOS Test Task
+# 🎁 CourtPass - iOS Test Task
 
-Тестовое задание для Swift Developer (iOS) - приложение с аутентификацией через Firebase Auth и главным экраном подарков с современным дизайном.
+<p align="center">
+  <strong>Тестовое задание для Swift Developer (iOS)</strong><br>
+  Приложение с аутентификацией через Firebase Auth и главным экраном подарков с современным дизайном
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/iOS-16.0+-blue?style=for-the-badge&logo=apple" alt="iOS Version">
+  <img src="https://img.shields.io/badge/Swift-5.9+-orange?style=for-the-badge&logo=swift" alt="Swift Version">
+  <img src="https://img.shields.io/badge/Xcode-15.0+-blue?style=for-the-badge&logo=xcode" alt="Xcode Version">
+  <img src="https://img.shields.io/badge/Firebase-Auth-yellow?style=for-the-badge&logo=firebase" alt="Firebase">
+  <img src="https://img.shields.io/badge/SwiftUI-MVVM-green?style=for-the-badge&logo=swift" alt="Architecture">
+</p>
+
+---
+
+## ⚡ Быстрый старт
+
+```bash
+# 1. Клонируйте репозиторий
+git clone https://github.com/NektoEllez/CourtPass-iOS.git
+cd CourtPass-iOS
+
+# 2. Откройте проект в Xcode
+open CourtPass.xcodeproj
+
+# 3. Запустите проект (⌘+R)
+# Приложение работает с мок-сервисами "из коробки"
+```
+
+> 💡 **Для реальной аутентификации:** настройте Firebase согласно [инструкции](#настройка-firebase)
+
+---
+
+## 📋 Содержание
+
+- [📱 Скриншоты](#-скриншоты)
+- [🎯 Описание](#-описание)
+- [🏗️ Архитектура](#️-архитектура)
+- [📱 Функциональность](#-функциональность)
+- [🚀 Запуск проекта](#-запуск-проекта)
+- [🔧 Структура проекта](#-структура-проекта)
+- [🌐 Backend API](#-backend-api)
+- [🔒 Безопасность](#-безопасность)
+- [🎨 Дизайн](#-дизайн)
+- [✅ Статус выполнения](#-статус-выполнения-требований)
+- [🧪 Тестирование](#-тестирование)
+- [🚀 Улучшения для продакшена](#-улучшения-для-продакшена)
+- [📋 Резюме](#-резюме)
+- [👨‍💻 Контакты](#-контакты)
+
+---
+
+## 📱 Скриншоты
+
+<div align="center">
+
+### 🌅 Light Mode
+<p>
+  <img width="250" alt="Auth Screen Light" src="https://github.com/user-attachments/assets/552e639f-a68f-48f6-a28c-e1491a6cf3ef" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="250" alt="Main Screen Light" src="https://github.com/user-attachments/assets/ce123713-1133-4801-bc34-5285ef96b205" />
+</p>
+
+### 🌙 Dark Mode  
+<p>
+  <img width="250" alt="Auth Screen Dark" src="https://github.com/user-attachments/assets/6f402bc1-431b-4998-af38-b0e041e19ad2" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="250" alt="Main Screen Dark" src="https://github.com/user-attachments/assets/68a3b971-b898-44db-8b37-eb91e4f663c5" />
+</p>
+
+</div>
+
+---
 
 ## 🎯 Описание
 

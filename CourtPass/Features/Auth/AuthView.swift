@@ -31,7 +31,7 @@ struct AuthView: View {
                 .scaledToFill()
                 .frame(width: DesignTokens.Size.promoImageSize, height: DesignTokens.Size.promoImageSize)
                 .offset(y: DesignTokens.Spacing.xxxl * 2)
-                .opacity(colorScheme == .dark ? 0.05 : 1.0)
+                .opacity(colorScheme == .dark ? 0.15 : 1.0)
         }
     }
     
@@ -43,7 +43,7 @@ struct AuthView: View {
                 .padding(.bottom, DesignTokens.Spacing.xl)
             welcomeSection.padding(.leading, DesignTokens.Spacing.lg)
             Spacer()
-            flowerImage.padding(.bottom, DesignTokens.Spacing.xxxl + DesignTokens.Spacing.sm)
+            flowerImage.padding(.bottom, DesignTokens.Spacing.xxxl)
             authButtons
                 .padding(.horizontal, DesignTokens.Spacing.lg)
             termsAndPrivacy
@@ -98,41 +98,35 @@ struct AuthView: View {
     
     @ViewBuilder
     private var appleSignInButton: some View {
-        Button {
-            Task {
-                await handleSignIn(provider: .apple)
-            }
-        } label: {
-            HStack(spacing: 12) {
-                Image(systemName: "applelogo")
-                    .font(.system(size: DesignTokens.IconSize.social, weight: .medium))
-                    .foregroundColor(.black)
-                
-                Text("Continue with Apple")
-                    .font(DesignTokens.Typography.bodySemibold)
-                    .foregroundColor(.black)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, DesignTokens.Spacing.lg + DesignTokens.Spacing.xs)
-            .background(.white)
-            .cornerRadius(DesignTokens.CornerRadius.button)
-        }
-        .disabled(isLoading)
+        socialSignInButton(
+            icon: Image(systemName: "applelogo"),
+            title: "Continue with Apple",
+            provider: .apple
+        )
     }
     
     @ViewBuilder
     private var googleSignInButton: some View {
+        socialSignInButton(
+            icon: Image("google"),
+            title: "Continue with Google", 
+            provider: .google
+        )
+    }
+    
+    @ViewBuilder
+    private func socialSignInButton<Icon: View>(icon: Icon, title: String, provider: SignInActor.Provider) -> some View {
         Button {
             Task {
-                await handleSignIn(provider: .google)
+                await handleSignIn(provider: provider)
             }
         } label: {
-            HStack(spacing: 12) {
-                Image("google")
+            HStack(spacing: DesignTokens.Spacing.md) {
+                icon
                     .font(.system(size: DesignTokens.IconSize.social, weight: .medium))
                     .foregroundColor(.black)
                 
-                Text("Continue with Google")
+                Text(title)
                     .font(DesignTokens.Typography.bodySemibold)
                     .foregroundColor(.black)
             }
