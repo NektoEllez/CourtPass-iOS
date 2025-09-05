@@ -3,6 +3,7 @@ import SwiftUI
 
 struct AuthView: View {
     @State private var isLoading = false
+    @Environment(\.colorScheme) private var colorScheme
     let onSignInSuccess: () -> Void
     
     var body: some View {
@@ -30,8 +31,7 @@ struct AuthView: View {
                 .scaledToFill()
                 .frame(width: DesignTokens.Size.promoImageSize, height: DesignTokens.Size.promoImageSize)
                 .offset(y: DesignTokens.Spacing.xxxl * 2)
-                .foregroundColor(Color(light: .white, dark: .gray))
-                .opacity(0.15)
+                .opacity(colorScheme == .dark ? 0.05 : 1.0)
         }
     }
     
