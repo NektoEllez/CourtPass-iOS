@@ -58,7 +58,7 @@ struct GiftCardView: View {
                             )
                     }
                 }
-                .clipShape(RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.r16))
+                .clipShape(RoundedRectangle(cornerRadius: DesignTokens.CornerRadius.lg))
                 .overlay(
                     Button {
                         let currentlyFavorite = gift.map { favorites.contains($0.id) } ?? isFavorite
@@ -89,13 +89,13 @@ struct GiftCardView: View {
                         .font(DesignTokens.Typography.headline)
                         .foregroundColor(DesignTokens.Text.primary)
                 }
-                .padding(.horizontal, DesignTokens.Spacing.block)
-                .padding(.vertical, DesignTokens.Spacing.inner)
+                .padding(.horizontal, DesignTokens.Spacing.md)
+                .padding(.vertical, DesignTokens.Spacing.lg)
             }
         }
         .buttonStyle(PlainButtonStyle())
         .background(DesignTokens.Card.background)
-        .cornerRadius(DesignTokens.CornerRadius.r16)
+        .cornerRadius(DesignTokens.CornerRadius.lg)
     }
 }
 #Preview("Gift Card View") {
